@@ -9,22 +9,22 @@ FROM table1;
 
 -- iNSERINDO APROVADORES 
 
-insert into ALTCTRPRUPROF 
+insert into Historico 
 select 
-	(select max(CODCTRPRUPROF) from ALTCTRPRUPROF) +  row_number() OVER (ORDER BY CODPROF), 
-	'201612131216490000000000001285' as chaveproc, 
-	CODPROF, 
-	0 as statusaprova, 
-	0 as envioemail, 
+	(select max(cod_Historico) from Historico) +  row_number() OVER (ORDER BY cod_Historico), 
+	'201612131216490000000000001285' as cod_proncipal, 
+	cod_Historico, 
+	0 as status, 
+	0 as enviado, 
 	1 as apaga,
-	row_number() OVER (ORDER BY CODPROF) as sequenciaaprovadores,
+	row_number() OVER (ORDER BY cod_Historico) as seq_usuarios,
 	1 as pagado, 
 	0 as fluxo, 
-	null as chavedesp,
-	0 as codfaswf, 
-	0 as aprovadoratual
+	null as cod_Principal2,
+	0 as fase, 
+	0 as usuario_atual
 from 
-	ALTPROF 
+	Historico 
 where 
-	CODPROF IN(97,28,218,108,249)
+	cod_Historico IN(97,28,218,108,249)
 
